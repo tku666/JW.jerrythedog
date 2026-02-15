@@ -1,49 +1,40 @@
 @font-face{
   font-family: "DungGeunMo";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
 }
 
-/* 기본 리셋 */
+/* ===== Base ===== */
 *{ box-sizing: border-box; }
-img{ max-width: 100%; height: auto; }
-button{ font-family: inherit; }
 
-/* 페이지 */
 body{
   margin: 0;
   padding: 20px;
   font-family: "DungGeunMo", system-ui, -apple-system, sans-serif;
   background: #f5f5f5;
-  line-height: 1.4;
+  color: #111;
 }
 
 h1{
-  margin: 0 0 18px 0;
-  font-size: 28px;
+  margin: 0 0 16px 0;
 }
 
-/* 전체 레이아웃(데스크탑) */
+/* ===== Desktop layout ===== */
 .app{
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 260px minmax(320px, 560px);
   gap: 20px;
   align-items: start;
-  max-width: 980px;
 }
 
-/* 왼쪽 패널 */
+/* Left panel */
 .panel{
   background: #fff;
   border: 3px solid #000;
-  padding: 16px;
+  padding: 15px;
   border-radius: 12px;
 }
 
-.statusRow{
-  margin-bottom: 16px;
-}
+.statusRow{ margin-bottom: 18px; }
 
 .statusRow strong{
   display: block;
@@ -53,52 +44,52 @@ h1{
 
 .hearts{
   display: flex;
-  gap: 6px;
-  align-items: center;
+  gap: 5px;
   flex-wrap: wrap;
 }
 
-/* 급똥 박스: 평상시 숨김 */
+/* poop box: 기본은 안 보임 */
 .poopBox{
-  margin-top: 12px;
-  padding: 12px;
+  margin-top: 10px;
+  padding: 12px 12px;
   border: 2px dashed #222;
-  border-radius: 12px;
+  border-radius: 10px;
   min-height: 24px;
   font-size: 18px;
-
+  display: none;         /* 평소엔 숨김 */
   background: transparent;
   color: #222;
-
-  /* ✅ 평상시엔 안 보이게 */
-  display: none;
 }
 
-/* 급똥 활성화: 빨강 + 드라마틱 */
+/* 급똥일 때만 등장 + 드라마 */
 .poopBox.poopAlertActive{
   display: block;
   border: 3px solid #c7454e;
   background: #ffe9ec;
   color: #c7454e;
-  font-weight: 900;
-  letter-spacing: 0.2px;
-  animation: alertFlash 0.6s infinite, alertBlink 0.9s infinite;
+  font-weight: 700;
+  animation: alertPulse 0.7s infinite;
 }
 
-/* 오른쪽 메인 */
+@keyframes alertPulse{
+  0%   { transform: scale(1);   filter: brightness(1); }
+  50%  { transform: scale(1.04); filter: brightness(1.1); }
+  100% { transform: scale(1);   filter: brightness(1); }
+}
+
+/* Right main */
 .main{
   display: grid;
-  gap: 14px;
   justify-items: center;
+  gap: 15px;
 }
 
-/* 카드(메시지+이미지) */
 .jerryCard{
-  width: min(560px, 100%);
+  width: 520px;
   background: #fff;
   border: 3px solid #000;
   border-radius: 12px;
-  padding: 16px;
+  padding: 15px;
 }
 
 .message{
@@ -106,42 +97,46 @@ h1{
   border: 2px solid #000;
   border-radius: 10px;
   padding: 12px 12px;
-  min-height: 58px;
+  min-height: 54px;
   margin: 0 0 12px 0;
   cursor: pointer;
   background: #fff;
-  font-size: 18px;
 }
 
-/* > 프롬프트: 오른쪽 아래 */
+/* > 프롬프트를 오른쪽 아래에 */
 .nextPrompt{
   position: absolute;
   right: 10px;
   bottom: 8px;
-  font-weight: 900;
+  font-weight: 800;
   animation: blink 1s infinite;
 }
 
-/* 이미지 */
-.jerryImg{
-  width: 100%;
-  height: 340px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 2px solid #000;
-  display: block;
+@keyframes blink{
+  0%{ opacity: 1; }
+  50%{ opacity: 0.2; }
+  100%{ opacity: 1; }
 }
 
-/* 버튼 그리드(데스크탑) */
+.jerryImg{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  border: 2px solid #000;
+}
+
 .buttons{
-  width: min(560px, 100%);
+  width: 520px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 
 .buttons button{
-  padding: 12px 10px;
+  padding: 10px;
+  font-family: inherit;
   font-size: 15px;
   border: 2px solid #000;
   background: #fff;
@@ -154,110 +149,55 @@ h1{
   transform: translateY(2px);
 }
 
-/* =========================
-   애니메이션
-========================= */
-@keyframes blink{
-  0%{ opacity: 1; }
-  50%{ opacity: 0.25; }
-  100%{ opacity: 1; }
-}
-
-@keyframes alertFlash{
-  0%{ transform: scale(1); }
-  50%{ transform: scale(1.05); }
-  100%{ transform: scale(1); }
-}
-
-@keyframes alertBlink{
-  0%{ opacity: 1; }
-  50%{ opacity: 0.35; }
-  100%{ opacity: 1; }
-}
-
+/* 화면 흔들림(급똥) */
 @keyframes shake{
-  0%{ transform: translate(0,0); }
-  25%{ transform: translate(-2px,1px); }
-  50%{ transform: translate(2px,-1px); }
-  75%{ transform: translate(-1px,2px); }
-  100%{ transform: translate(0,0); }
+  0% { transform: translate(0,0); }
+  25% { transform: translate(-2px,1px); }
+  50% { transform: translate(2px,-1px); }
+  75% { transform: translate(-1px,2px); }
+  100% { transform: translate(0,0); }
 }
-
-/* ✅ 흔들림은 body에만 */
-body.screenShake{
+.screenShake{
   animation: shake 0.2s infinite;
 }
 
-/* =========================
-   모바일 최적화
-   - 폰에서 "작게 보이는" 문제 해결:
-     1) 세로 1열
-     2) 카드/버튼 폭 100%
-     3) 버튼 2열
-     4) 글씨/패딩 조금 키움
-========================= */
+/* =========================================================
+   Mobile: 레이아웃을 "완전히 다르게" (위→아래 1열)
+   - 제리 카드 full width
+   - 버튼 2열
+   - 상태창/급똥은 아래로 내려서 화면 낭비 줄임
+========================================================= */
 @media (max-width: 760px){
-  body{
-    padding: 14px;
-  }
 
-  h1{
-    font-size: 26px;
-    margin-bottom: 14px;
-  }
+  body{ padding: 14px; }
 
   .app{
-    grid-template-columns: 1fr;
-    gap: 14px;
-    max-width: 100%;
+    grid-template-columns: 1fr;   /* 1열 */
+    gap: 12px;
   }
 
-  .panel{
-    padding: 14px;
-  }
+  /* 모바일에선 main을 먼저 보여주고, panel은 아래로 */
+  .main{ order: 1; justify-items: stretch; }
+  .panel{ order: 2; }
 
-  .statusRow strong{
-    font-size: 18px;
-  }
-
-  .main{
-    justify-items: stretch;
-  }
-
-  .jerryCard{
+  /* 카드/버튼을 화면 꽉 차게 */
+  .jerryCard,
+  .buttons{
     width: 100%;
-    padding: 14px;
+    max-width: 520px; /* 너무 넓어지는 거 방지 */
+    margin: 0 auto;
   }
 
-  .message{
-    font-size: 18px;
-    min-height: 64px;
-    padding: 14px 12px;
-  }
-
+  /* 사진을 폰 화면에 맞게 비율 조정 */
   .jerryImg{
-    height: 300px;
+    height: min(56vw, 320px); /* 화면에 따라 줄어듦 */
   }
 
   .buttons{
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr); /* 2열 */
   }
 
-  .buttons button{
-    font-size: 16px;
-    padding: 13px 10px;
-  }
-}
-
-/* 더 작은 폰(아이폰 SE급) */
-@media (max-width: 380px){
-  .jerryImg{
-    height: 260px;
-  }
-  .buttons button{
-    font-size: 15px;
-    padding: 12px 8px;
-  }
+  /* 상태창 글씨/간격 약간 축소해서 아래 낭비 줄임 */
+  .statusRow strong{ font-size: 16px; }
+  .poopBox{ font-size: 16px; }
 }
