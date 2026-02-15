@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Jerry the Dog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Jerry the Dog</h1>
+
+    <div class="app">
+        <aside class="panel">
+            <div class="statusRow">
+                <strong>꼬르륵지수</strong>
+                <div id="hungerStatus" class="hearts"></div>
+            </div>
+
+            <div class="statusRow">
+                <strong>보송지수</strong>
+                <div id="cleanStatus" class="hearts"></div>
+            </div>
+
+            <div class="statusRow">
+                <strong>반짝지수</strong>
+                <div id="furStatus" class="hearts"></div>
+            </div>
+
+            <div class="statusRow">
+                <strong>신남지수</strong>
+                <div id="funStatus" class="hearts"></div>
+            </div>
+
+            <div class="statusRow">
+                <strong>교감지수</strong>
+                <div id="loveStatus" class="hearts"></div>
+            </div>
+
+            <div id="poopAlertBox" class="poopBox"></div>
+        </aside>
+
+        <main class="main">
+            <div class="jerryCard">
+                <p id="jerryMessage" class="message"></p>
+                <img id="jerryImage" src="" alt="제리 이미지" class="jerryImg">
+            </div>
+
+            <div class="buttons">
+                <button onclick="feedJerry()">밥 주기</button>
+                <button onclick="snackJerry()">간식 주기</button>
+                <button onclick="walkJerry()">산책 가기</button>
+                <button onclick="playJerry()">장난감 주기</button>
+                <button onclick="cutJerry()">미용 하기</button>
+                <button onclick="bathJerry()">목욕 하기</button>
+                <button onclick="takeshitJerry()">응가 하기</button>
+                <button onclick="petJerry()">Pet that Dawg</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

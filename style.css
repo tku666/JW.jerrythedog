@@ -1,0 +1,200 @@
+@font-face{
+  font-family: "DungGeunMo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff") format("woff");
+}
+
+body{
+  margin: 0;
+  padding: 20px;
+  font-family: "DungGeunMo", sans-serif;
+  background: #f5f5f5;
+}
+
+h1{
+  margin-bottom: 20px;
+}
+
+.app{
+  display: grid;
+  grid-template-columns: 260px minmax(320px, 560px);
+  gap: 20px;
+}
+
+.panel{
+  background: white;
+  border: 3px solid black;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.statusRow{
+  margin-bottom: 18px;
+}
+
+.statusRow strong{
+  display: block;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.hearts{
+  display: flex;
+  gap: 5px;
+}
+
+/* 평상시: 빨강 없음 */
+.poopBox{
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px dashed #222;
+  border-radius: 10px;
+  min-height: 24px;
+  font-size: 18px;
+
+  /* ✅ 평상시엔 색 없음 */
+  background: transparent;
+  color: #222;
+
+  /* ✅ 평상시엔 숨기고 싶으면 이 2줄 켜도 됨 */
+  display: none;
+}
+
+/* 급똥: 빨강 + 표시 */
+.poopBox.poopAlertActive{
+  display: block;          /* 위에서 display:none 했을 때만 필요 */
+  border: 2px solid #c7454e;
+  background: #ffe9ec;
+  color: #c7454e;
+  font-weight: 700;
+}
+
+
+
+
+.main{
+  display: grid;
+  justify-items: center;
+  gap: 15px;
+}
+
+.jerryCard{
+  width: 520px;
+  background: white;
+  border: 3px solid black;
+  border-radius: 12px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.message{
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 48px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.jerryImg{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.buttons{
+  width: 520px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.buttons button{
+  padding: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  border: 2px solid black;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.buttons button:active{
+  transform: translateY(2px);
+}
+
+@media (max-width: 760px){
+  .app{
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .jerryCard, .buttons{
+    width: 100%;
+  }
+
+  .buttons{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.message {
+  position: relative;
+  cursor: pointer;
+}
+
+/* > 위치를 오른쪽 아래로 */
+.nextPrompt {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+.nextPrompt {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+
+@keyframes alertFlash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes alertBlink {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.poopAlertActive{
+  background:#ffeaea;
+  color:#ff0000;
+  border:3px solid #ff0000;
+  font-weight:bold;
+}
+
+@keyframes shake {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(-2px,1px); }
+  50% { transform: translate(2px,-1px); }
+  75% { transform: translate(-1px,2px); }
+  100% { transform: translate(0,0); }
+}
+
+.screenShake {
+  animation: shake 0.2s infinite;
+}
+
+
